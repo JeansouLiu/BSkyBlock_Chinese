@@ -1,8 +1,8 @@
-# Locale References
+# 语言参考项
 
 This file contains a list of the locale references in the source code. See the commit date/time for the last update.
 
-## References
+## 参考项
 
 /!\ Most command-related references are not listed at the moment.
 
