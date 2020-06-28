@@ -7,34 +7,34 @@ BSkyBlock
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=world.bentobox%3Abskyblock&metric=security_rating)](https://sonarcloud.io/component_measures?id=world.bentobox%3Abskyblock&metric=Security)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=world.bentobox%3Abskyblock&metric=bugs)](https://sonarcloud.io/project/issues?id=world.bentobox%3Abskyblock&resolved=false&types=BUG)
 
-# NOTE
-BSkyBlock requires BentoBox, so to run BSkyBlock, you must have BentoBox installed and place BSkyBlock in BentoBox's addon folder.
+# 注意
+BSkyBlock 依赖于 BentoBox, 所以要运行 BSkyBlock, 你必须先安装 BentoBox 并把 BSkyBlock 放在**扩展**文件夹内.
 
-## About
-BSkyBlock provides a skyblock-type Minecraft game for players that supports a default set of 3 islands (overworld, nether and end), protection of islands, team and coop play and other features. Please see the config.yml for all the settings.
+## 关于此扩展
+BSkyBlock 提供一种我的世界空岛游戏并支持 3 种默认岛屿类型 (主世界, 下界和末地), 岛屿保护, 团队和合作及其他功能. 更多设置见 config.yml .
 
-## Installation
+## 安装教程
 
-1. Install BentoBox and run it on the server at least once to create its data folders.
-2. Place this jar in the addons folder of the BentoBox plugin.
-3. Restart the server.
-4. The addon will create worlds and a data folder and inside the folder will be a config.yml.
-5. Stop the server .
-6. Edit the config.yml how you want.
-7. Delete any worlds that were created by default if you made changes that would affect them.
-8. Restart the server.
+1. 安装 BentoBox 并至少启动一次服务器.
+2. 将此扩展放在 BentoBox 插件的扩展文件夹内(addons).
+3. 重启服务器.
+4. 扩展将会自动创建世界和数据文件夹，在数据文件夹里你可以找到 config.yml.
+5. 关闭服务器.
+6. 根据你的需要修改 config.yml.
+7. 如果你修改的设置影响到世界的生成，请删除刚刚生成的世界.
+8. 启动服务器.
 
 ## Config.yml
 
-The config.yml is similar to ASkyBlock but *not the same*. Note that distance between islands and protection range are **radius values** so the island size will be twice these values in blocks! Also, the distance between islands will be set automatically to a chunk boundary (a multiple of 16 blocks).
+config.yml 与 ASkyBlock *类似*. 注意岛屿间距和保护范围以**半径**为单位! .
 
 
-### Other Add-ons
+### 其它扩展
 
-BSkyBlock is an add-on that uses the BentoBox API. Here are some other ones that you may be interested in:
+BSkyBlock 是 BentoBox 的其中一个扩展. 你也许还对其他扩展感兴趣:
 
-* [**Addons**](https://github.com/BentoBoxWorld/BentoBox/blob/develop/ADDON.md)
+* [**扩展列表**](https://github.com/BentoBoxWorld/BentoBox/blob/develop/ADDON.md)
 
-Bugs and Feature requests
+错误和功能反馈
 =========================
-File bug and feature requests here: https://github.com/BentoBoxWorld/BSkyBlock/issues
+发送错误报告或者新功能请求: https://github.com/BentoBoxWorld/BSkyBlock/issues
