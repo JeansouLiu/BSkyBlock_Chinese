@@ -21,7 +21,7 @@ public class CopyToBentoBox extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBentoBoxReady(BentoBoxReadyEvent e) {
-        getLogger().severe("BSkyBlock.jar must be in the BentoBox/addons folder! Trying to move it there...");
+        getLogger().severe("BSkyBlock.jar 必须在 BentoBox/addons 文件夹里! 正在尝试移动...");
         File addons = new File(getFile().getParent(), "BentoBox/addons");
         if (addons.exists()) {
             File to = new File(addons, getFile().getName());
@@ -29,15 +29,15 @@ public class CopyToBentoBox extends JavaPlugin implements Listener {
 
                 try {
                     Files.move(getFile(), to);
-                    getLogger().severe(getFile().getName() + " moved successfully. Restart server now to activate!");
+                    getLogger().severe(getFile().getName() + " 移动成功. 重启服务器以激活扩展!");
 
                 } catch (IOException ex) {
-                    getLogger().severe("Failed to move it. " + ex.getMessage());
-                    getLogger().severe("Move " + getFile().getName() + " manually into the BentoBox/addons folder. Then restart server.");
+                    getLogger().severe("移动失败. " + ex.getMessage());
+                    getLogger().severe("请自行移动 " + getFile().getName() + " 到 BentoBox/addons 文件夹内. 然后重启服务器.");
                 }
             }
         } else {
-            getLogger().severe("BentoBox folders do not exist! " + addons.getAbsolutePath());
+            getLogger().severe("BentoBox 文件夹不存在! 你看 Wiki 了吗" + addons.getAbsolutePath());
         }
 
     }

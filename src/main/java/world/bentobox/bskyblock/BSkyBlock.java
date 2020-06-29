@@ -17,7 +17,7 @@ import world.bentobox.bskyblock.commands.IslandAboutCommand;
 import world.bentobox.bskyblock.generators.ChunkGeneratorWorld;
 
 /**
- * Main BSkyBlock class - provides an island minigame in the sky
+ * BSkyBlock 主类 - 空岛游戏扩展
  * @author tastybento
  * @author Poslovitch
  */
@@ -26,20 +26,20 @@ public class BSkyBlock extends GameModeAddon implements Listener {
     private static final String NETHER = "_nether";
     private static final String THE_END = "_the_end";
 
-    // Settings
+    // 设置
     private Settings settings;
     private ChunkGeneratorWorld chunkGenerator;
     private Config<Settings> configObject = new Config<>(this, Settings.class);
 
     @Override
     public void onLoad() {
-        // Save the default config from config.yml
+        // 输出默认配置文件
         saveDefaultConfig();
-        // Load settings from config.yml. This will check if there are any issues with it too.
+        // 从 config.yml 中读取设置. 同时也将检查配置文件错误.
         loadSettings();
-        // Chunk generator
+        // 区块生成器
         chunkGenerator = settings.isUseOwnGenerator() ? null : new ChunkGeneratorWorld(this);
-        // Register commands
+        // 声明指令
         playerCommand = new DefaultPlayerCommand(this)
 
         {
@@ -58,7 +58,7 @@ public class BSkyBlock extends GameModeAddon implements Listener {
         settings = configObject.loadConfigObject();
         if (settings == null) {
             // Disable
-            logError("BSkyBlock settings could not load! Addon disabled.");
+            logError("BSkyBlock 设置无法读取! 扩展已禁用.");
             setState(State.DISABLED);
             return false;
         }
@@ -79,7 +79,7 @@ public class BSkyBlock extends GameModeAddon implements Listener {
     @Override
     public void onReload() {
         if (loadSettings()) {
-            log("Reloaded BSkyBlock settings");
+            log("重载成功");
         }
     }
 
@@ -94,7 +94,7 @@ public class BSkyBlock extends GameModeAddon implements Listener {
     public void createWorlds() {
         String worldName = settings.getWorldName().toLowerCase();
         if (getServer().getWorld(worldName) == null) {
-            log("Creating BSkyBlock world ...");
+            log("生成空岛世界中 ...");
         }
 
         // Create the world if it does not exist
@@ -102,14 +102,14 @@ public class BSkyBlock extends GameModeAddon implements Listener {
         // Make the nether if it does not exist
         if (settings.isNetherGenerate()) {
             if (getServer().getWorld(worldName + NETHER) == null) {
-                log("Creating BSkyBlock's Nether...");
+                log("生成空岛下界中...");
             }
             netherWorld = settings.isNetherIslands() ? getWorld(worldName, World.Environment.NETHER, chunkGenerator) : getWorld(worldName, World.Environment.NETHER, null);
         }
         // Make the end if it does not exist
         if (settings.isEndGenerate()) {
             if (getServer().getWorld(worldName + THE_END) == null) {
-                log("Creating BSkyBlock's End World...");
+                log("生成空岛末地中...");
             }
             endWorld = settings.isEndIslands() ? getWorld(worldName, World.Environment.THE_END, chunkGenerator) : getWorld(worldName, World.Environment.THE_END, null);
         }
