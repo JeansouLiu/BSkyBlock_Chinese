@@ -1,162 +1,182 @@
-# BSkyBlock Configuration {$version}
+# BSkyBlock 1.13.1 配置文件
 bskyblock:
   command:
-    # Island Command. What command users will run to access their island.
-    # To define alias, just separate commands with white space.
+    # 岛屿指令. 定义扩展的指令.
+    # 要定义多个指令, 在每个指令之间加入空格.
     # Added since 1.3.0.
     island: island is skyblock sb
-    # The island admin command.
-    # To define alias, just separate commands with white space.
+    # 扩展管理员指令.
+    # 要定义多个指令, 在每个指令之间加入空格.
     # Added since 1.3.0.
     admin: bsbadmin bsb skyblockadmin sbadmin sba
-    # The default action for new player command call.
-    # Sub-command of main player command that will be run on first player command call.
-    # By default it is sub-command 'create'.
+    # 当新玩家输入 island 选项里的指令时执行的操作.
+    # 默认为 'create'.
     # Added since 1.13.1.
     new-player-action: create
-    # The default action for player command.
-    # Sub-command of main player command that will be run on each player command call.
-    # By default it is sub-command 'go'.
+    # 当已有岛屿的玩家输入 island 选项里的指令时执行的操作.
+    # 默认为 'go'.
     # Added since 1.13.1.
     default-action: go
 world:
-  # Friendly name for this world. Used in admin commands. Must be a single word
+  # 世界昵称. 可在管理员指令中使用. 不可包含一些奇怪的字符和空格
   friendly-name: BSkyBlock
-  # Name of the world - if it does not exist then it will be generated.
-  # It acts like a prefix for nether and end (e.g. bskyblock_world, bskyblock_world_nether, bskyblock_world_end)
+  # 世界（文件夹）名 - 如世界不存在将会自动生成.
+  # 对于下界和末地，此名称将作为前缀 (如 bskyblock_world, bskyblock_world_nether, bskyblock_world_end)
   world-name: bskyblock_world
-  # World difficulty setting - PEACEFUL, EASY, NORMAL, HARD
-  # Other plugins may override this setting
+  # 世界难度设置 - PEACEFUL(和平), EASY(简单), NORMAL(普通), HARD(困难)
+  # 其它插件可能会覆盖此设置
   difficulty: NORMAL
   spawn-limits:
-    # Spawn limits. These override the limits set in bukkit.yml
-    # If set to a negative number, the server defaults will be used
+    # 生成限制. 此设置将会覆盖 bukkit.yml 中的设置
+    # 设为负数将会使用服务器默认设置(bukkit.yml)
+    # 怪物
     # Added since 1.11.2.
     monsters: -1
+    # 动物
     # Added since 1.11.2.
     animals: -1
+    # 水生动物
     # Added since 1.11.2.
     water-animals: -1
+    # 环境
     # Added since 1.11.2.
     ambient: -1
-    # Setting to 0 will disable animal spawns, but this is not recommended. Minecraft default is 400.
-    # A negative value uses the server default
+    # 设为 0 将禁用动物生成（不推荐）. 我的世界默认值为 400.
     # Added since 1.11.2.
     ticks-per-animal-spawns: -1
-    # Setting to 0 will disable monster spawns, but this is not recommended. Minecraft default is 400.
-    # A negative value uses the server default
+    # 设为 0 禁用怪物生成. 我的世界默认值为 400.
     # Added since 1.11.2.
     ticks-per-monster-spawns: -1
-  # Radius of island in blocks. (So distance between islands is twice this)
-  # It is the same for every dimension : Overworld, Nether and End.
-  # This value cannot be changed mid-game and the plugin will not start if it is different.
-  # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+  # 岛屿半径. (岛屿间距是此值的 2 倍)
+  # 这对每个维度都有效 : 主世界, 下界和末地.
+  # 请不要中途改变此选项.
+  # /!\ 如果你确定要改变此选项, 请先重置数据库和世界.
   distance-between-islands: 400
-  # Default protection range radius in blocks. Cannot be larger than distance.
-  # Admins can change protection sizes for players individually using /bsbadmin range set <player> <new range>
-  # or set this permission: bskyblock.island.range.<number>
-  # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+  # 默认保护范围. 不可以比上面的选项大.
+  # 管理员可以使用 /bsbadmin range set <玩家> <范围> 单独为玩家设置保护范围
+  # 或赋予权限: bskyblock.island.range.<范围值>
+  # /!\ 不要中途改变此值. 如果你确定要改变此选项, 请先重置数据库和世界.
   protection-range: 50
-  # Start islands at these coordinates. This is where new islands will start in the
-  # world. These must be a factor of your island distance, but the plugin will auto
-  # calculate the closest location on the grid. Islands develop around this location
-  # both positively and negatively in a square grid.
-  # If none of this makes sense, leave it at 0,0.
-  # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+  # 首个岛屿的位置. 这是该世界的第一个岛屿所在的位置
+  # 此值必须是岛屿半径(间距)的因数, 如果你算错了, 插件会自动为你纠正
+  # 所有岛屿都会围绕此坐标生成
+  # 因数: a × b = c, 则 a 和 b 为 c 的因数
+  # 如果你看不懂这些, 请不要修改此选项
+  # /!\ 不要中途改变此选项. 如果你确定要改变此选项, 请先重置数据库和世界.
   start-x: 0
-  # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+  # /!\ 不要中途改变此选项. 如果你确定要改变此选项, 请先重置数据库和世界.
   start-z: 0
   offset-x: 0
   offset-z: 0
-  # Island height - Lowest is 5.
-  # It is the y coordinate of the bedrock block in the schem.
+  # 岛屿海拔 - 最低为 5.
+  # 这将是岛屿模板中的基岩所在的 y 坐标.
   island-height: 120
-  # Use your own world generator for this world.
-  # In this case, the plugin will not generate anything.
-  # If used, you must specify the world name and generator in the bukkit.yml file.
-  # See https://bukkit.gamepedia.com/Bukkit.yml#.2AOPTIONAL.2A_worlds
+  # 使用其它世界生成器.
+  # 如果启用, 本扩展将不会接管世界的生成.
+  # 且你必须在 bukkit.yml 中定义世界名称和生成器名称.
+  # 详见 https://bukkit.gamepedia.com/Bukkit.yml#.2AOPTIONAL.2A_worlds
   use-own-generator: false
-  # Sea height (don't changes this mid-game unless you delete the world)
-  # Minimum is 0, which means you are playing Skyblock!
-  # If sea height is less than about 10, then players will drop right through it
-  # if it exists. Makes for an interesting variation on skyblock.
-  # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+  # 海洋高度 (不要中途改变此选项除非删除世界)
+  # 最低为 0, 将不会有海洋!
+  # 如果低于 10, 海洋将无法阻止玩家掉入虚空
+  # 玩家不会像 AcidIsland 那样在水中受伤.
+  # /!\ 不要中途改变此选项. 如果你确定要改变此选项, 请先重置数据库和世界.
   sea-height: 0
-  # Maximum number of islands in the world. Set to -1 or 0 for unlimited.
-  # If the number of islands is greater than this number, it will stop players from creating islands.
+  # 岛屿数量限制. 设为 -1 或 0 禁用.
+  # 若岛屿数量 ≥ 此选项, 新玩家将无法再创建岛屿.
   max-islands: 0
-  # The default game mode for this world. Players will be set to this mode when they create
-  # a new island for example. Options are SURVIVAL, CREATIVE, ADVENTURE, SPECTATOR
+  # 默认游戏模式. 比如玩家创建岛屿时就会被设为此游戏模式
+  # 可用项: SURVIVAL(生存模式), CREATIVE(创造模式), ADVENTURE(冒险模式), SPECTATOR(旁观模式)
   default-game-mode: SURVIVAL
-  # The default biome for the overworld
+  # 默认生物群系(仅主世界有效)
   default-biome: PLAINS
-  # The maximum number of players a player can ban at any one time in this game mode.
-  # The permission acidisland.ban.maxlimit.X where X is a number can also be used per player
-  # -1 = unlimited
+  # 玩家默认一次最多能封禁多少个玩家.
+  # 权限为 bskyblock.ban.maxlimit.X
+  # -1 = 无限
   ban-limit: -1
   nether:
-    # Generate Nether - if this is false, the nether world will not be made and access to
-    # the nether will not occur. Other plugins may still enable portal usage.
-    # Note: Some default challenges will not be possible if there is no nether.
-    # Note that with a standard nether all players arrive at the same portal and entering a
-    # portal will return them back to their islands.
+    # 是否生成下界 - 若设为 false, 下界将不会生成且下界传送门将无效. 某些插件可能仍会启用下界传送门.
+    # Note: 某些默认挑战需要下界才能完成.
+    # 不管玩家从何处进入下界
+    # 在下界进入传送门时都会传送到自己的岛屿上.
     generate: true
-    # Islands in Nether. Change to false for standard vanilla nether.
-    # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+    # 是否生成岛屿. 设为 false 将生成原版下界.
+    # /!\ 不要中途改变此选项. 如果你确定要改变此选项, 请先重置数据库和世界.
     islands: true
-    # Make the nether roof, if false, there is nothing up there
-    # Change to false if lag is a problem from the generation
-    # Only applies to islands Nether
+    # 是否生成下界顶层, 若为 false, 下界顶层将不会生成
+    # 若生成卡顿, 可以考虑关闭此功能
+    # 仅对下界生效
     roof: true
-    # Nether spawn protection radius - this is the distance around the nether spawn
-    # that will be protected from player interaction (breaking blocks, pouring lava etc.)
-    # Minimum is 0 (not recommended), maximum is 100. Default is 25.
-    # Only applies to vanilla nether
+    # 下界出生点保护
+    # 在此范围内的玩家无法进行任何世界交互
+    # 最小为 0 (不推荐), 最大为 100. 默认为 25.
+    # 仅对原版下界有效, 即上方 islands 设为 false
     spawn-radius: 25
   end:
     generate: true
-    # /!\ BentoBox currently does not support changing this value mid-game. If you do need to change it, do a full reset of your databases and worlds.
+    # /!\ 不要中途改变此选项. 如果你确定要改变此选项, 请先重置数据库和世界.
     islands: true
-    # /!\ This feature is experimental and might not work as expected or might not work at all.
+    # /!\ 是否生成末影龙, 本功能尚不完善
     dragon-spawn: false
-  # Mob white list - these mobs will NOT be removed when logging in or doing /island
+  # 敌对生物允许名单 - 这些生物不会在执行 /island 命令时清除
   remove-mobs-whitelist:
+  - WITHER
+  - PIG_ZOMBIE
   - ZOMBIE_VILLAGER
   - ENDERMAN
-  - PIG_ZOMBIE
-  - WITHER
-  # World flags. These are boolean settings for various flags for this world
+  # 世界设置.
   flags:
+    # 爬行者伤害
     CREEPER_DAMAGE: true
+    # 采集黑曜石
     OBSIDIAN_SCOOPING: true
+    # 活塞推拉
     PISTON_PUSH: false
+    # 自动重生
     ISLAND_RESPAWN: true
+    # 爬行者破坏
     CREEPER_GRIEFING: false
+    # 末影人破坏
     ENDERMAN_GRIEFING: true
+    # 清除超平坦区块
     CLEAN_SUPER_FLAT: false
+    # 破坏箱子
     CHEST_DAMAGE: false
+    # 掉落时防止玩家通过指令传送
     PREVENT_TELEPORT_WHEN_FALLING: false
+    # 在岛屿范围外生成生物
     NATURAL_SPAWNING_OUTSIDE_RANGE: true
+    # 进入/离开岛屿信息
     ENTER_EXIT_MESSAGES: true
+    # 末影人死亡掉落
     ENDERMAN_DEATH_DROP: true
+    # 岛主或成员离线时继续运行红石设备
     OFFLINE_REDSTONE: true
+    # 移除终末之诗
     REMOVE_END_EXIT_ISLAND: true
+    # 移除敌对生物
     REMOVE_MOBS: true
+    # 允许使用末影箱
     ENDER_CHEST: false
+    # 允许破坏物品展示框
     ITEM_FRAME_DAMAGE: false
+    # 允许树木长到岛屿范围之外
     TREES_GROWING_OUTSIDE_RANGE: false
-  # These are the default protection settings for new islands.
-  # The value is the minimum island rank required allowed to do the action
-  # Ranks are the following:
-  #   VISITOR   = 0
-  #   COOP      = 200
-  #   TRUSTED   = 400
-  #   MEMBER    = 500
-  #   SUB-OWNER = 900
-  #   OWNER     = 1000
+  # 这是新岛屿的默认保护策略.
+  # 只有等级大于等于所设值时才能执行该行为
+  # 等级列表:
+  #   游客   = 0
+  #   合作者 = 200
+  #   受信任 = 400
+  #   成员   = 500
+  #   副岛主 = 900
+  #   岛主   = 1000
   default-island-flags:
+    # 攻击动物
     HURT_ANIMALS: 500
+    # 使用红石
     REDSTONE: 500
+    # 使用水桶
     BUCKET: 500
     LOCK: 0
     ENDER_PEARL: 500
@@ -171,10 +191,10 @@ world:
     FROST_WALKER: 500
     COLLECT_LAVA: 500
     LEVER: 500
-    RIDING: 500
     HURT_MONSTERS: 0
-    ARMOR_STAND: 500
+    RIDING: 500
     NAME_TAG: 500
+    ARMOR_STAND: 500
     TRADING: 0
     EGGS: 500
     ITEM_DROP: 0
@@ -182,19 +202,19 @@ world:
     NETHER_PORTAL: 500
     CROP_TRAMPLE: 500
     ITEM_PICKUP: 0
-    BREWING: 500
     DROPPER: 500
+    BREWING: 500
     COLLECT_WATER: 500
     BUTTON: 500
     FIRE_EXTINGUISH: 500
     BEACON: 500
     TRAPDOOR: 500
     PRESSURE_PLATE: 0
-    ITEM_FRAME: 500
     PLACE_BLOCKS: 500
+    ITEM_FRAME: 500
     CRAFTING: 0
-    SHEARING: 500
     ENCHANTING: 0
+    SHEARING: 500
     SPAWN_EGGS: 500
     BED: 500
     MILKING: 0
@@ -203,13 +223,13 @@ world:
     EXPERIENCE_PICKUP: 500
     HOPPER: 500
     LEASH: 500
-    MOUNT_INVENTORY: 500
     BREAK_BLOCKS: 500
+    MOUNT_INVENTORY: 500
     CHORUS_FRUIT: 500
     CONTAINER: 500
     POTION_THROWING: 500
     JUKEBOX: 500
-  # These are the default settings for new islands
+  # 新岛屿的默认设置
   default-island-settings:
     PVP_END: false
     PVP_NETHER: false
@@ -217,195 +237,194 @@ world:
     MONSTER_SPAWN: true
     FIRE_SPREAD: true
     PVP_OVERWORLD: false
-  # These settings/flags are hidden from users
-  # Ops can toggle hiding in-game using SHIFT-LEFT-CLICK on flags in settings
+  # 这些设置将对玩家隐藏
+  # 当然你也可以在游戏中设置隐藏/显示(见 Wiki)
   # Added since 1.4.1.
   hidden-flags: []
-  # Visitor banned commands - Visitors to islands cannot use these commands in this world
+  # 游客不可以在岛屿内使用这些指令
   visitor-banned-commands:
   - spawner
   - spawnmob
-  # Falling banned commands - players cannot use these commands when falling
-  # if the PREVENT_TELEPORT_WHEN_FALLING world setting flag is active
+  # 玩家不可以在掉落时使用这些指令
+  # 仅在 PREVENT_TELEPORT_WHEN_FALLING 设置开启时有效
   # Added since 1.8.0.
   falling-banned-commands:
   - warp
   - spawn
 island:
-  # Default max team size
-  # Permission size cannot be less than the default below. 
+  # 队伍的最大人数
+  # 用权限设置的人数不可低于此值. 
   max-team-size: 4
-  # Default maximum number of coop rank members per island
-  # Players can have the bskyblock.coop.maxsize.<number> permission to be bigger but
-  # permission size cannot be less than the default below. 
+  # 每个岛屿的合作者的最大人数
+  # 赋予玩家 bskyblock.coop.maxsize.<人数> 权限可覆盖此选项
+  # 权限所设人数不得小于此值
   # Added since 1.13.0.
   max-coop-size: 4
-  # Default maximum number of trusted rank members per island
-  # Players can have the bskyblock.trust.maxsize.<number> permission to be bigger but
-  # permission size cannot be less than the default below. 
+  # 每个岛屿最多可以有多少个受信任玩家
+  # 赋予玩家 bskyblock.trust.maxsize.<人数> 权限可覆盖此选项
+  # 权限所设人数不得小于此值
   # Added since 1.13.0.
   max-trusted-size: 4
-  # Default maximum number of homes a player can have. Min = 1
-  # Accessed via /is sethome <number> or /is go <number>
+  # 每个玩家最多可以有几个家. 最少 = 1
+  # 多于 1 个家的指令格式: /is sethome <第几个家> 和 /is go <第几个家>
   max-homes: 1
   reset:
-    # How many resets a player is allowed (manage with /bsbadmin reset add/remove/reset/set command)
-    # Value of -1 means unlimited, 0 means hardcore - no resets.
-    # Example, 2 resets means they get 2 resets or 3 islands lifetime
+    # 玩家最多可以重置多少次岛屿 (可使用 /bsbadmin reset add/remove/reset/set 指令设置)
+    # -1 意为无限, 0 为禁止重置
+    # 比如, 2 次重置表示玩家有 2 次重置机会或 3 次获得新岛屿的机会
     reset-limit: -1
-    # Kicked or leaving players lose resets
-    # Players who leave a team will lose an island reset chance
-    # If a player has zero resets left and leaves a team, they cannot make a new
-    # island by themselves and can only join a team.
-    # Leave this true to avoid players exploiting free islands
+    # 被踢出或主动离开队伍的玩家将会失去一次岛屿重置机会
+    # 如果玩家的重置机会为 0, 且离开了队伍, 该玩家将不能再创建新岛屿, 只能加入其它队伍
+    # 设为 true 可以避免玩家用不正常的方式使用队伍功能
     leavers-lose-reset: false
-    # Allow kicked players to keep their inventory.
-    # Overrides the on-leave inventory reset for kicked players.
+    # 保留被踢出玩家的背包物品.
+    # 此项将覆盖 on-leave.inventory 设置.
     kicked-keep-inventory: false
     on-join:
-      # What the addon should reset when the player joins or creates an island
-      # Reset Money - if this is true, will reset the player's money to the starting money
-      # Recommendation is that this is set to true, but if you run multi-worlds
-      # make sure your economy handles multi-worlds too.
+      # 当玩家创建或加入一个岛屿时扩展是否重置这些项目
+      # 重置金钱 - 若为 true, 将会将玩家的金钱重置为默认值
+      # 推荐开启此功能, 但是如果你的服务器上还有其他玩法且你还想开启此功能
+      # 请使用支持不同世界不同金钱的插件.
       money: false
-      # Reset inventory - if true, the player's inventory will be cleared.
-      # Note: if you have MultiInv running or a similar inventory control plugin, that
-      # plugin may still reset the inventory when the world changes.
+      # 重置背包 - 若为 true, 玩家的背包将会被清空.
+      # 注意: 如果你安装了 MultiInv 或其他相似的背包管理插件, 那些插件仍会在
+      # 切换世界时更换玩家的背包.
       inventory: false
-      # Reset health - if true, the player's health will be reset.
+      # 重置血量 - 若为 true, 玩家将被治愈.
       # Added since 1.8.0.
       health: true
-      # Reset hunger - if true, the player's hunger will be reset.
+      # 重置饥饿值 - 若为 true, 玩家将被喂饱.
       # Added since 1.8.0.
       hunger: true
-      # Reset experience points - if true, the player's experience will be reset.
+      # 重置经验值 - 若为 true, 玩家的经验值将被重置.
       # Added since 1.8.0.
       exp: false
-      # Reset Ender Chest - if true, the player's Ender Chest will be cleared.
+      # 重置末影箱 - 若为 true, 玩家末影箱中的物品将被清空.
       ender-chest: false
     on-leave:
-      # What the plugin should reset when the player leaves or is kicked from an island
-      # Reset Money - if this is true, will reset the player's money to the starting money
-      # Recommendation is that this is set to true, but if you run multi-worlds
-      # make sure your economy handles multi-worlds too.
+      # 当玩家离开/被踢出一个岛屿时,扩展是否重置以下项目
+      # 重置金钱 - 若为 true, 将会将玩家的金钱重置为默认值
+      # 推荐开启此功能, 但是如果你的服务器上还有其他玩法且你还想开启此功能
+      # 请使用支持不同世界不同金钱的插件.
       money: false
-      # Reset inventory - if true, the player's inventory will be cleared.
-      # Note: if you have MultiInv running or a similar inventory control plugin, that
-      # plugin may still reset the inventory when the world changes.
+      # 重置背包 - 若为 true, 玩家的背包将会被清空.
+      # 注意: 如果你安装了 MultiInv 或其他相似的背包管理插件, 那些插件仍会在
+      # 切换世界时更换玩家的背包.
       inventory: false
-      # Reset health - if true, the player's health will be reset.
+      # 重置血量 - 若为 true, 玩家将被治愈.
       # Added since 1.8.0.
       health: false
-      # Reset hunger - if true, the player's hunger will be reset.
+      # 重置饥饿值 - 若为 true, 玩家将被喂饱.
       # Added since 1.8.0.
       hunger: false
-      # Reset experience - if true, the player's experience will be reset.
+      # 重置经验值 - 若为 true, 玩家的经验值将被重置.
       # Added since 1.8.0.
       exp: false
-      # Reset Ender Chest - if true, the player's Ender Chest will be cleared.
+      # 重置末影箱 - 若为 true, 玩家末影箱中的物品将被清空.
       ender-chest: false
   create-island-on-first-login:
-    # Toggles the automatic island creation upon the player's first login on your server.
-    # If set to true,
-    #    * Upon connecting to your server for the first time, the player will be told that
-    #     an island will be created for him.
-    #   * Make sure you have a Blueprint Bundle called "default": this is the one that will
-    #     be used to create the island.
-    #   * An island will be created for the player without needing him to run the create command.
-    # If set to false, this will disable this feature entirely.
-    # Warning:
-    #   * If you are running multiple gamemodes on your server, and all of them have
-    #     this feature enabled, an island in all the gamemodes will be created simultaneously.
-    #     However, it is impossible to know on which island the player will be teleported to afterwards.
-    #   * Island creation can be resource-intensive, please consider the options below to help mitigate
-    #     the potential issues, especially if you expect a lot of players to connect to your server
-    #     in a limited period of time.
+    # 是否在玩家第一次进入服务器时自动创建该玩家的岛屿.
+    # 若设为 true,
+    #    * 当玩家第一次加入服务器时, 该玩家将被告知
+    #     岛屿已创建.
+    #   * 请确保你有一个叫 "default" 的蓝图包: 此功能将用
+    #     此蓝图创建岛屿.
+    #   * 玩家不必执行指令即可创建岛屿.
+    # 若设为 false, 此功能将被完全禁用.
+    # 警告:
+    #   * 如果你的服务器(单端)运行了多个游戏模式, 并且都
+    #     开启了此功能, 所有游戏模式的岛屿都会被自动创建.
+    #     但是, 玩家之后将被传送到哪个游戏模式是随机的.
+    #   * 创建岛屿是比较占用服务器性能的, 请认真阅读一下选项
+    #     来相对的避免潜在的问题发生, 尤其是服务器人流量较大时.
     # Added since 1.9.0.
     enable: false
-    # Time in seconds after the player logged in, before his island gets created.
-    # If set to 0 or less, the island will be created directly upon the player's login.
-    # It is recommended to keep this value under a minute's time.
+    # 玩家登录服务器多少秒后, 岛屿将开始创建.
+    # 若所设值 ≤ 0, 岛屿将在玩家登录时立即创建.
+    # 建议此值不要大于 1 分钟(60 秒).
     # Added since 1.9.0.
     delay: 5
-    # Toggles whether the island creation should be aborted if the player logged off while the
-    # delay (see the option above) has not worn off yet.
-    # If set to true,
-    #   * If the player has logged off the server while the delay (see the option above) has not
-    #     worn off yet, this will cancel the island creation.
-    #   * If the player relogs afterward, since he will not be recognized as a new player, no island
-    #     would be created for him.
-    #   * If the island creation started before the player logged off, it will continue.
-    # If set to false, the player's island will be created even if he went offline in the meantime.
-    # Note this option has no effect if the delay (see the option above) is set to 0 or less.
+    # 若玩家在上方所设的时间内离开了服务器
+    # 是否停止岛屿的创建.
+    # 若设为 true,
+    #   * 若玩家在延缓期内离开了服务器，岛屿创建会停止.
+    #   * 若玩家之后又加入了服务器，ta 不会再被视为新玩家，因此岛屿不会自动创建.
+    #   * 若玩家在岛屿创建阶段离开了服务器, 岛屿会继续创建.
+    # 若设为 false, 无论如何岛屿都会在延迟过后创建.
+    # 若上方选项小于等于 0 ，此设置无任何效果.
     # Added since 1.9.0.
     abort-on-logout: true
-  # Toggles whether the player should be teleported automatically to his island when it is created.
-  # If set to false, the player will be told his island is ready but will have to teleport to his island using the command.
+  # 岛屿创建完成后是否传送玩家到岛屿.
+  # 若设为 false, 玩家将只会被告知岛屿已创建完成.
   # Added since 1.10.0.
   teleport-player-to-island-when-created: true
-  # Create Nether or End islands if they are missing when a player goes through a portal.
-  # Nether and End islands are usually pasted when a player makes their island, but if they are
-  # missing for some reason, you can switch this on.
+  # 当玩家进入传送门时，如果末地/下界岛屿不存在是否生成.
+  # 一般末地和下界岛屿都会在玩家创建岛屿时自动生成，但是
+  # 由于某些神奇的原因导致它们没有生成时，可以开启此选项.
   # Note that bedrock removal glitches can exploit this option.
   # Added since 1.10.0.
   create-missing-nether-end-islands: false
   commands:
-    # List of commands to run when a player joins an island or creates one.
-    # These commands are run by the console, unless otherwise stated using the [SUDO] prefix,
-    # in which case they are executed by the player.
+    # 当玩家加入或创建岛屿时执行的指令.
+    # 这些指令由控制台执行, 除非使用 [SUDO] 前缀,
+    # 将使用玩家身份执行.
     # 
-    # Available placeholders for the commands are the following:
-    #    * [name]: name of the player
+    # 可用变量:
+    #    * [name]: 玩家名
     # 
-    # Here are some examples of valid commands to execute:
+    # 例如:
     #    * "[SUDO] bbox version"
     #    * "bsbadmin deaths set [player] 0"
     # Added since 1.8.0.
     on-join: []
-    # List of commands to run when a player leaves an island, resets his island or gets kicked from it.
-    # These commands are run by the console, unless otherwise stated using the [SUDO] prefix,
-    # in which case they are executed by the player.
+    # 当玩家离开岛屿、重置岛屿或被踢出岛屿时执行的指令.
+    # 这些指令由控制台执行, 除非使用 [SUDO] 前缀,
+    # 将使用玩家身份执行.
     # 
-    # Available placeholders for the commands are the following:
-    #    * [name]: name of the player
+    # 可用变量:
+    #    * [name]: 玩家名
     # 
-    # Here are some examples of valid commands to execute:
+    # 例如:
     #    * '[SUDO] bbox version'
     #    * 'bsbadmin deaths set [player] 0'
     # 
-    # Note that player-executed commands might not work, as these commands can be run with said player being offline.
+    # 注意以玩家身份执行的命令可能不会生效, 因为你可以在离线状态下被踢出.
     # Added since 1.8.0.
     on-leave: []
   sethome:
+    # 下界
     nether:
+      # 是否允许设置家
       allow: true
+      # 是否需要确认
       require-confirmation: true
+    # 末地
     the-end:
       allow: true
       require-confirmation: true
   deaths:
-    # Whether deaths are counted or not.
+    # 是否记录死亡次数.
     counted: true
-    # Maximum number of deaths to count. The death count can be used by add-ons.
+    # 最多记录的死亡次数. 死亡数可能会被其它扩展使用.
     max: 10
-    # When a player joins a team, reset their death count
+    # 当玩家加入一个队伍时，重置 ta 的死亡数
     team-join-reset: true
-    # Reset player death count when they start a new island or reset an island
+    # 是否在玩家创建新岛/重置岛屿时重置死亡数
     # Added since 1.6.0.
     reset-on-new-island: true
 protection:
-  # Geo restrict mobs.
-  # Mobs that exit the island space where they were spawned will be removed.
+  # 区域限制型生物.
+  # 离开生成岛的这些生物将被移除.
   geo-limit-settings:
   - GHAST
   - BAT
   - BLAZE
-  # BSkyBlock blocked mobs.
-  # List of mobs that should not spawn in BSkyBlock.
+  # 生物禁止名单.
+  # 这些生物不能在空岛世界中生成.
   # Added since 1.13.1.
   block-mobs: []
-  # Invincible visitors. List of damages that will not affect visitors.
-  # Make list blank if visitors should receive all damages
+  # 无敌游客. 这些伤害不会影响游客.
+  # 留空以关闭无敌游客设置
   invincible-visitors:
   - BLOCK_EXPLOSION
   - CONTACT
@@ -432,5 +451,5 @@ protection:
   - CRAMMING
   - VOID
 do-not-edit-these-settings:
-  # These settings should not be edited
+  # 改这个服务器会遭雷劈的
   reset-epoch: 0
