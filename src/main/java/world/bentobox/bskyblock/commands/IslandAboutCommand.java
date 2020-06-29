@@ -22,10 +22,11 @@ public class IslandAboutCommand extends CompositeCommand {
 
     @Override
     public boolean execute(User user, String label, List<String> args) {
-        user.sendRawMessage("About " + getAddon().getDescription().getName() + " " + getAddon().getDescription().getVersion() + ":");
-        user.sendRawMessage("Copyright (c) 2017 - 2020 tastybento, Poslovitch");
-        user.sendRawMessage("See https://www.eclipse.org/legal/epl-2.0/");
-        user.sendRawMessage("for license information.");
+        user.sendRawMessage("关于此扩展 " + getAddon().getDescription().getName() + " " + getAddon().getDescription().getVersion() + ":");
+        user.sendRawMessage("版权所有 (c) 2017 - 2020 tastybento, Poslovitch");
+        user.sendRawMessage("(c) 2020 由 Jeansou 翻译");
+        user.sendRawMessage("访问 https://www.eclipse.org/legal/epl-2.0/");
+        user.sendRawMessage("获取详细版权信息");
         return true;
     }
 
