@@ -40,4 +40,5 @@ BSkyBlock 是 BentoBox 的其中一个扩展. 你也许还对其他扩展感兴�
 错误和功能反馈
 =========================
 发送错误报告或者新功能请求: https://github.com/BentoBoxWorld/BSkyBlock/issues
+
 如果你不知道什么叫英语，发到我这也行
