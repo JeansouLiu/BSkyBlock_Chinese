@@ -35,8 +35,9 @@ config.yml 与 ASkyBlock *类似*. 注意岛屿间距和保护范围以**半径*
 
 BSkyBlock 是 BentoBox 的其中一个扩展. 你也许还对其他扩展感兴趣:
 
-* [**扩展列表**](https://github.com/BentoBoxWorld/BentoBox/blob/develop/ADDON.md)
+* [**扩展列表**](https://github.com/JeansouLiu/BentoBox_Chineses/blob/master/ADDON.md)
 
 错误和功能反馈
 =========================
 发送错误报告或者新功能请求: https://github.com/BentoBoxWorld/BSkyBlock/issues
+如果你不知道什么叫英语，发到我这也行
