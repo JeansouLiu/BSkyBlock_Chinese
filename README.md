@@ -40,3 +40,7 @@ BSkyBlock 是 BentoBox 的其中一个扩展. 你也许还对其他扩展感兴�
 错误和功能反馈
 =========================
 发送错误报告或者新功能请求: https://github.com/BentoBoxWorld/BSkyBlock/issues
+
+汉化效果
+=========================
+加入汉化测试服务器 mc.jeansou.com 查看
